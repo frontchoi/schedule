@@ -1,0 +1,106 @@
+@import './_reset', './_font', './_mixin';
+
+html,
+body,
+#root {
+    height: 100%;
+}
+
+body {
+    background-color: #fff;
+    // font-family: 'JetBrains Mono', ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, 'Apple Color Emoji', Arial, sans-serif,
+    //     'Segoe UI Emoji', 'Segoe UI Symbol', 'Nanum Gothic';
+    font-family: 'Pretendard-Regular';
+    color: #333;
+}
+h1 {
+    padding: 30px 0 15px;
+    color: #000;
+    font-size: 22px;
+    text-align: center;
+    font-family: 'Malgun Gothic';
+}
+
+h2 {
+    padding-left: 5px;
+    color: #000;
+    font-size: 18px;
+    font-family: 'Malgun Gothic';
+}
+
+caption {
+    visibility: hidden;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    font: 0/0 'arial';
+}
+
+a {
+    color: #2277ee;
+    text-decoration: none;
+
+    &:active,
+    &:visited,
+    &:focus,
+    &:hover {
+        color: #2277ee;
+        text-decoration: underline;
+    }
+}
+
+table {
+    clear: both;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    word-break: break-all;
+    word-wrap: break-word;
+    thead {
+        th {
+            padding: 10px 0 9px;
+            color: #fff;
+            border: 1px solid #999;
+            background: #666;
+        }
+    }
+    tbody {
+        .on > * {
+            background: #f6f6f6;
+        }
+        .section > * {
+            background: #eee !important;
+            th {
+                padding-left: 10px;
+            }
+        }
+        th {
+            padding: 4px 5px;
+            border: 1px solid #999;
+            &.date {
+                &::after {
+                    content: '(8 = 1Day)';
+                }
+            }
+        }
+        td {
+            padding: 4px 5px;
+            border: 1px solid #999;
+            &.link {
+                color: #999;
+                font-style: italic;
+            }
+            &.path {
+                font-weight: bold;
+                text-align: center;
+            }
+            &.time {
+                text-align: center;
+            }
+            &.note {
+                color: #ee0000;
+                text-align: center;
+            }
+        }
+    }
+}
