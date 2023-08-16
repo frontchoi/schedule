@@ -55,6 +55,7 @@ table {
     word-wrap: break-word;
 }
 .App {
+    padding-bottom: 40px;
     text-align: center;
     & > * {
         max-width: 1200px;
