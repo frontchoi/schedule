@@ -127,14 +127,14 @@ export const dronDome = {
                     detail: ['경로보기 구현 필요'],
                     link: '/history/detection',
                     day: '',
-                    end: '',
+                    end: '완료',
                 },
                 {
                     pageName: '탐지내용 - 디지털',
                     detail: ['재생 기능 구현 필요'],
                     link: '/history/detection',
                     day: '',
-                    end: '',
+                    end: '완료',
                 },
                 {
                     pageName: '탐지내용 - 아날로그',
@@ -145,7 +145,7 @@ export const dronDome = {
                 },
                 {
                     pageName: '로그',
-                    detail: [],
+                    detail: ['선택한 카테고리에 맞게 리스트 내용 노출 기능 완료'],
                     link: '/history/log',
                     day: '',
                     end: '완료',
