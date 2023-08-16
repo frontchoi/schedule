@@ -1,85 +1,100 @@
-import { dronDom } from './data/dronDom';
+import { dronDome } from './data/dronDome';
 import './css/index.scss';
 import { useEffect, useState } from 'react';
 
 function App() {
+    const localhost = 'http://localhost:8080';
     const [data, setData] = useState();
+    const [pageLength, setPageLength] = useState(0);
     useEffect(() => {
-        setData(dronDom);
-    }, [dronDom]);
+        setData(dronDome);
+    }, [dronDome]);
 
+    useEffect(() => {
+        if (data) {
+            let num = 0;
+            data.section.forEach((item) => {
+                num += item.pageList.length;
+            });
+            setPageLength(num);
+        }
+    }, [data]);
     return (
         <div className="App">
-            <h1>▶ 드론돔 코딩현황 ◀</h1>
-            <table>
-                <caption>코딩작업현황</caption>
-                <colgroup>
-                    <col width="160" />
-                    <col width="400" />
-                    <col width="200" />
-                    <col width="200" />
-                    <col width="100" />
-                    <col width="*" />
-                </colgroup>
-                <thead>
-                    <tr>
-                        <th>화면명</th>
-                        <th>디테일</th>
-                        <th>경로</th>
-                        <th>파일명</th>
-                        <th class="date">예상 일정</th>
-                        <th>비고 및 완료 여부</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="section">
-                        <th>로그인</th>
-                        <td class="detail"></td>
-                        <td class="path">/login/</td>
-                        <td class="file"></td>
-                        <td class="time"></td>
-                        <td class="note"></td>
-                    </tr>
-                    <tr>
-                        <th>로그인 화면</th>
-                        <td class="detail"></td>
-                        <td class="path"></td>
-                        <td class="file">
-                            <a href="/login/index.html" target="_blank">
-                                index.html
-                            </a>
-                        </td>
-                        <td class="time">1</td>
-                        <td class="note"></td>
-                    </tr>
-                    <tr class="section">
-                        <th>대시보드</th>
-                        <td class="detail"></td>
-                        <td class="path">/dashboard/</td>
-                        <td class="file"></td>
-                        <td class="time"></td>
-                        <td class="note"></td>
-                    </tr>
-                    <tr>
-                        <th>기본 상태</th>
-                        <td class="detail">
-                            <ul>
-                                <li>좌측 메뉴 열고 닫기 기능</li>
-                                <li>날짜 및 현재 시각 표현</li>
-                                <li>지도의 원으로 된 선 표현</li>
-                            </ul>
-                        </td>
-                        <td class="path"></td>
-                        <td class="file">
-                            <a href="/dashboard/index.html" target="_blank">
-                                index.html
-                            </a>
-                        </td>
-                        <td class="time">2</td>
-                        <td class="note"></td>
-                    </tr>
-                </tbody>
-            </table>
+            {data ? (
+                <>
+                    <h1>▶ {data.name} 개발 현황 ◀</h1>
+                    <p className="total_page">
+                        총 페이지 : <span>{pageLength}</span>
+                    </p>
+                    <table className="table_wrap">
+                        <colgroup>
+                            <col width="200" />
+                            <col width="220" />
+                            <col width="*" />
+                            <col width="80" />
+                            <col width="150" />
+                        </colgroup>
+                        <caption>코딩작업현황</caption>
+                        <thead>
+                            <tr>
+                                {data.header.map((item, index) => {
+                                    return <th key={`th${index}`}>{item}</th>;
+                                })}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {data.section.map((item, index) => {
+                                return (
+                                    <tr key={`tr${index}`}>
+                                        <td colSpan="7">
+                                            <table className="table_list">
+                                                <colgroup>
+                                                    <col width="200" />
+                                                    <col width="220" />
+                                                    <col width="*" />
+                                                    <col width="80" />
+                                                    <col width="150" />
+                                                </colgroup>
+                                                <tbody>
+                                                    <tr className="section">
+                                                        <td className="section_name">{item.sectionName}</td>
+                                                        <td className="link"></td>
+                                                        <td className="detail"></td>
+                                                        <td className="day"></td>
+                                                        <td className="end"></td>
+                                                    </tr>
+                                                    {item.pageList.map((list, index) => {
+                                                        return (
+                                                            <tr key={`tr${index}`}>
+                                                                <td className="page_name">ㄴ{list.pageName}</td>
+                                                                <td className="link">
+                                                                    <a href={`${localhost}${list.link}`} target="_blank" rel="noreferrer">
+                                                                        {list.link}
+                                                                    </a>
+                                                                </td>
+                                                                <td className="detail">
+                                                                    <ul>
+                                                                        {list.detail.map((item, index) => {
+                                                                            return <li key={`li${index}`}>- {item}</li>;
+                                                                        })}
+                                                                    </ul>
+                                                                </td>
+                                                                <td className="day">{list.day}</td>
+                                                                <td className="end">{list.end}</td>
+                                                            </tr>
+                                                        );
+                                                    })}
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                );
+                            })}
+                        </tbody>
+                    </table>
+                </>
+            ) : undefined}
         </div>
     );
 }

@@ -17,7 +17,6 @@ h1 {
     padding: 30px 0 15px;
     color: #000;
     font-size: 22px;
-    text-align: center;
     font-family: 'Malgun Gothic';
 }
 
@@ -48,58 +47,89 @@ a {
         text-decoration: underline;
     }
 }
-
 table {
-    clear: both;
     width: 100%;
     border-collapse: collapse;
     border-spacing: 0;
     word-break: break-all;
     word-wrap: break-word;
-    thead {
-        th {
-            padding: 10px 0 9px;
-            color: #fff;
-            border: 1px solid #999;
-            background: #666;
+}
+.App {
+    text-align: center;
+    & > * {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    .total_page {
+        padding: 10px;
+        font-size: 16px;
+        text-align: right;
+        span {
+            font-size: 20px;
+            color: red;
         }
     }
-    tbody {
-        .on > * {
-            background: #f6f6f6;
-        }
-        .section > * {
-            background: #eee !important;
-            th {
-                padding-left: 10px;
-            }
-        }
-        th {
-            padding: 4px 5px;
-            border: 1px solid #999;
-            &.date {
-                &::after {
-                    content: '(8 = 1Day)';
+    .table_wrap {
+        clear: both;
+        text-align: left;
+        & > thead {
+            & > tr {
+                th {
+                    padding: 10px 0 9px;
+                    background: #666;
+                    border: 1px solid #999;
+                    font-weight: 400;
+                    text-align: center;
+                    color: #fff;
                 }
             }
         }
+        & > tbody {
+            .on > * {
+                background: #f6f6f6;
+            }
+            .section > * {
+                background: #eee !important;
+                th {
+                    padding-left: 10px;
+                }
+            }
+            & > tr {
+                th {
+                    border: 1px solid #999;
+                    &.date {
+                        &::after {
+                            content: '(8 = 1Day)';
+                        }
+                    }
+                }
+                td {
+                    border: 1px solid #999;
+                    &.link {
+                        cursor: pointer;
+                        color: #999;
+                    }
+                    &.day {
+                        text-align: center;
+                    }
+                    &.end {
+                        text-align: center;
+                        color: #ee0000;
+                    }
+                }
+            }
+        }
+    }
+
+    .table_list {
         td {
             padding: 4px 5px;
-            border: 1px solid #999;
-            &.link {
-                color: #999;
-                font-style: italic;
+            &.page_name {
+                padding-left: 10px;
             }
-            &.path {
-                font-weight: bold;
-                text-align: center;
-            }
-            &.time {
-                text-align: center;
-            }
-            &.note {
-                color: #ee0000;
-                text-align: center;
+            &.detail {
+                padding: 7px 10px;
+                line-height: 24px;
             }
         }
     }
